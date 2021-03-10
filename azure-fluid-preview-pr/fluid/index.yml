@@ -1,0 +1,29 @@
+### YamlMime:Hub
+
+title: Azure Fluid documentation
+summary: Azure Fluid is a managed cloud service that supports Fluid Framework Clients
+# brand: aspnet | azure | dotnet | dynamics | m365 | ms-graph | office | power-bi | power-platform | sql | sql-server | vs | visual-studio | windows | xamarin
+brand: azure
+
+metadata:
+  title: Azure Fluid
+  description: Azure Fluid is a managed cloud service that supports Fluid Framework Clients
+  ms.service: azure-fluid
+  ms.topic: hub-page
+  author: hickeys
+  ms.author: hickeys
+  ms.date: 01/22/2021
+
+# highlightedContent section (optional)
+# Maximum of 8 items
+highlightedContent:
+# itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
+  items:
+    # Card
+    - title: About Azure Fluid
+      itemType: overview
+      url:  overview.md
+    - title: Quickstart
+      itemType: quickstart
+      url: fluid-quickstart.md
+
