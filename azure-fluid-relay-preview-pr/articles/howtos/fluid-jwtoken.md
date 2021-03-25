@@ -1,16 +1,21 @@
 ---
 author: sharmakhushboo
-description: Better understand the the JWT token used in Azure Fluid
-title: Azure Fluid Token Contract
+description: Better understand the the JWT token used in Azure Fluid Relay
+title: Azure Fluid Relay Token Contract
 ms.author: sharmak
 ms.date: 02/09/2021
 ms.service: app-service
 ms.topic: reference
 ---
 
-# Azure Fluid Token Contract
+> [!NOTE]
+> As it stands, this is partially a conceptual article and partially a how-to. I put it in the how-to section for now, but we should review whether this is primarily discussing how to use JWT tokens (with a few examples), or primarily how to use JWT tokens (with some preliminary information). We may decide it's both or neither, and refactor this into two or more articles.
+>
+> hickeys
 
-Requests sent to Azure Fluid should contain a JWT token in the authorization header. This token should be signed by the tenant key (obtained during provisioning). This JWT token should have the required claims mentioned below.
+# Azure Fluid Relay Token Contract
+
+Requests sent to Azure Fluid Relay should contain a JWT token in the authorization header. This token should be signed by the tenant key (obtained during provisioning). This JWT token should have the required claims mentioned below.
 
 ## Claims
 
@@ -38,14 +43,14 @@ Each piece is separated by a period (.) and separately Base64 encoded.
 | documentId      | string | Identifies the document for which the token is being generated. |
 | scope      | string[]      |   Identifies the permissions required by the client on the document or summary. For every scope, you can define the permissions you want to give to the client.  |
 | tenantId      | string      |   Identifies the tenant. This will be shared with you during the onboarding process. |
-| user (optional)     | { displayName: <display_name>, id: <user_id>,name: <user_name>, }       |   Identifies users of your application. This is sent back to your application by Alfred (the ordering service).  This can be used by your application to identify your users from the response it gets from Alfred. Azure Fluid does not validate this information. |
+| user (optional)     | { displayName: <display_name>, id: <user_id>,name: <user_name>, }       |   Identifies users of your application. This is sent back to your application by Alfred (the ordering service).  This can be used by your application to identify your users from the response it gets from Alfred. Azure Fluid Relay does not validate this information. |
 | iat      | number, a UNIX timestamp       |   "Issued At" indicates when the authentication for this token occurred. |
 | exp      | number, a UNIX timestamp       |   The "exp" (expiration time) claim identifies the expiration time on or after which the JWT must not be accepted for processing. The token lifetime cannot be more than 1 hour. |
 | ver      | string      |   Indicates the version of the access token. Please use: 1.0  |
 
 <br/>
 
-## A Sample Azure Fluid Token
+## A Sample Azure Fluid Relay Token
 
 ```typescript
 { 
@@ -63,7 +68,7 @@ Each piece is separated by a period (.) and separately Base64 encoded.
 
 <br/>
 
-## How can you generate an Azure Fluid token? 
+## How can you generate an Azure Fluid Relay token? 
 
 You can use the jsonwebtoken npm package and sign your token using this method.
 

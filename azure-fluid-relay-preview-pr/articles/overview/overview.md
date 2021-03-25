@@ -1,16 +1,19 @@
 ---
 author: hickeys
-description: Better understand the typical use cases and key benefits of the Fluid Framework
-title: Azure Fluid overview
+description: Better understand the typical use cases and key benefits of the Azure Fluid Relay Framework
+title: Azure Fluid Relay overview
 ms.author: sabroner
 ms.date: 01/22/2021
 ms.service: app-service
 ms.topic: overview
 ---
 
-# Azure Fluid overview
+> [!NOTE]
+> I updated the product name in the descrption, but it may be incorrect. If this is an incorrect use of the Azure Fluid Relay name, please change it back.
 
-The Azure Fluid service is a managed offering for the Fluid Framework that helps developers build real-time collaborative
+# Azure Fluid Relay overview
+
+The Azure Fluid Relay service is a managed offering for the Fluid Framework that helps developers build real-time collaborative
 experiences and replicate state across connected JavaScript clients in real-time.
 
 ## What is the Fluid Framework?

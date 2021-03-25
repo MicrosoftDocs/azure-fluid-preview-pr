@@ -1,6 +1,6 @@
 ---
-title: Quickstart to learn how to use Azure Fluid
-description: A quickstart for using Azure Fluid to create a dice roller
+title: Quickstart to learn how to use Azure Fluid Relay
+description: A quickstart for using Azure Fluid Relay to create a dice roller
 author: SamBroner
 ms.service: azure-fluid
 ms.devlang: typescript
@@ -12,7 +12,7 @@ ms.author: sabroner
 
 # Quick Start
 
-In this Quick Start, we will be getting a 'dice roller' Fluid application up and running against the Azure Fluid service. The code for this sample is currently living in a special branch of our Hello World repository. You can find it at [github.com/microsoft/FluidHelloWorld/tree/new-hello-world.](https://github.com/microsoft/FluidHelloWorld/tree/new-hello-world)
+In this Quick Start, we will be getting a 'dice roller' Fluid application up and running against the Azure Fluid Relay service. The code for this sample is currently living in a special branch of our Hello World repository. You can find it at [github.com/microsoft/FluidHelloWorld/tree/new-hello-world.](https://github.com/microsoft/FluidHelloWorld/tree/new-hello-world)
 
 ## Set up your development environment
 
@@ -55,11 +55,11 @@ action copy the full URL in the browser, including the ID, into a new window or 
 second client for your dice roller application. With both windows open, click the **Roll** button in either and note
 that the state of the dice changes in both clients.
 
-Now, let's run the same sample against the Azure Fluid service.
+Now, let's run the same sample against the Azure Fluid Relay service.
 
-## Running against the Azure Fluid service
+## Running against the Azure Fluid Relay service
 
-To run against the Azure Fluid service, we'll have to make a simple code change to ```app.ts```.
+To run against the Azure Fluid Relay service, we'll have to make a simple code change to ```app.ts```.
 
 We're going to replace Tinylicious, our local test service, with Routerlicious, our internal name for the Azure Fluid Relay Service.
 
