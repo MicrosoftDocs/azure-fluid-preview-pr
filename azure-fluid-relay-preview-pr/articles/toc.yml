@@ -1,0 +1,34 @@
+- name: Azure Fluid Relay Documentation
+  href: index.yml
+- name: Overview
+  items:
+  - name: What is Azure Fluid Relay?
+    href: overview/overview.md
+- name: Quickstarts
+  items:
+  - name: Azure Fluid Relay quickstart
+    href: quickstarts/fluid-quickstart.md
+- name: Tutorials
+  items:
+  - name: Placeholder
+    href: overview/overview.md
+- name: Samples
+  items:
+  - name: Placeholder
+    href: overview/overview.md
+- name: Concepts
+  items:
+  - name: Authorization in Azure Fluid Relay
+    href: concepts/fluid-authorization.md
+- name: How-to guides
+  items:
+  - name: How to use JWT tokens
+    href: howtos/fluid-jwtoken.md
+- name: Reference
+  items:
+  - name: Placeholder
+    href: overview/overview.md
+- name: Resources
+  items:
+  - name: Fluid Framework homepage (what is the non-azure name?)
+    href: https://fluidframework.com
