@@ -2,8 +2,8 @@
   "docsets_to_publish": [
     {
       "docset_name": "azure-fluid-preview-pr",
-      "build_source_folder": "azure-fluid-relay-preview-pr",
-      "build_output_subfolder": "azure-fluid-relay-preview-pr",
+      "build_source_folder": "azure-fluid-preview-pr",
+      "build_output_subfolder": "azure-fluid-preview-pr",
       "locale": "en-us",
       "monikers": [],
       "moniker_ranges": [],
