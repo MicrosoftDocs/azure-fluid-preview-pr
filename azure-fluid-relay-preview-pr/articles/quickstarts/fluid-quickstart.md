@@ -14,6 +14,8 @@ ms.author: sabroner
 
 In this Quick Start, we will be getting a 'dice roller' Fluid application up and running against the Azure Fluid Relay service. The code for this sample is currently living in a special branch of our Hello World repository. You can find it at [github.com/microsoft/FluidHelloWorld/tree/new-hello-world.](https://github.com/microsoft/FluidHelloWorld/tree/new-hello-world)
 
+> This demo is current as of version ```^0.41.0```
+
 ## Set up your development environment
 
 To get started, you need the following installed.
@@ -63,20 +65,44 @@ To run against the Azure Fluid Relay service, we'll have to make a simple code c
 
 We're going to replace Tinylicious, our local test service, with Routerlicious, our internal name for the Azure Fluid Relay Service.
 
+### Add the FRS-Client package
+Install ```@fluid-experimental/frs-client``` and import the client and config in ```app.ts```
+
+```sh
+npm i @fluid-experimental/frs-client
+```
+
+```typescript
+import { FrsConnectionConfig, FrsClient } from '@fluid-experimental/frs-client';
+```
+
+### Replace the Tinylicious client with the FRS client
+
 Remove the following line
 ```typescript
-const service = new TinyliciousService();
+TinyliciousClient.init();
 ```
 
 and replace it with the RouterliciousService constructor and your Azure Fluid Relay Service configuration.
 
 ```typescript
-const service = new RouterliciousService({
-        tenantId: "example tenantId",
-        key: "example key",
-        orderer: "example orderer url",
-        storage: "example storage url",
-    });
+const connectionConfig: FrsConnectionConfig = {
+  type: "key",
+  tenantId: "",
+  key: "",
+  orderer: "",
+  storage: "",
+};
+
+FrsClient.init(connectionConfig);
+```
+
+Finally, fetch the container from FRS instead of tinylicious using your newly initialized client.
+
+```typescript
+const [fluidContainer] = isNew
+    ? (await FrsClient.createContainer({ id }, containerSchema))
+    : (await FrsClient.getContainer({ id }, containerSchema));
 ```
 
 🥳**Congratulations**🎉 You have successfully taken the first step towards unlocking the world of Fluid collaboration.
