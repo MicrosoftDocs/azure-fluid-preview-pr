@@ -18,12 +18,39 @@
     href: overview/overview.md
 - name: Concepts
   items:
+  - name: Architecture
+    href: concepts/architecture.md
+  - name: Introducing distributed data structures
+    href: concepts/dds.md
+  - name: Encapsulating data with DataObject
+    href: concepts/dataobject-aqueduct.md
+  - name: Containers and the container runtime
+    href: concepts/dds.md
+  - name: Container Management
+    href: concepts/container-management.md
+  - name: The Fluid Service
+    href: concepts/service.md
   - name: Authorization in Azure Fluid Relay
     href: concepts/fluid-authorization.md
+  - name: Debugging Guide
+    href: concepts/debugging.md
+  - name: Compatibility
+    href: concepts/compatibility.md
+
 - name: How-to guides
   items:
+  - name: How to secure your Fluid service
+    href: howtos/auth.md
   - name: How to use JWT tokens
     href: howtos/fluid-jwtoken.md
+  - name: Using service clients to connect to Fluid services
+    href: howtos/service-clients.md
+  - name: Connect to a Fluid Service in Azure with FrsClient
+    href: howtos/azure-frs.md
+  - name: Collect Fluid Framework logs with a custom ITelemetryBaseLogger
+    href: howtos/custom-logging.md
+  - name: Enable Fluid logs in the browser
+    href: howtos/enable-logs.md
 - name: Reference
   items:
   - name: Placeholder
