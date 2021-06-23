@@ -1,0 +1,7 @@
+{
+    "yaml.schemas": {
+        ".empty_schema.json": [
+          "**/toc.yml"
+        ]
+      }
+}
