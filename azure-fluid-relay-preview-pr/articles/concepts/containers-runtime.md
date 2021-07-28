@@ -3,32 +3,22 @@ title: Containers and the container runtime
 menuPosition: 5
 ---
 
-A **Fluid container** is a foundational concept for creating anything with the Fluid Framework. All of the sample Fluid
-applications use a Fluid container to manage the user experience, app logic, and app state.
+# Azure Fluid Relay containers and the container runtime
 
-However, a Fluid container is *not* a standalone application. A Fluid container is a *code-plus-data package*. A
-container must be loaded by the Fluid loader and connected to a Fluid service.
+> [!NOTE]
+> Find a place for "A Fluid container is the instantiated container JavaScript object, but it's also the definition of the container. We interchangeably use "container" to refer to the class, which can create new objects, and the instantiated object itself.
 
-Because containers are such a core concept, we'll look at them from a few different angles.
+**Fluid containers** are the atomic unit of storage in the Azure Fluid Relay service, and are foundational concept for creating anything with the Fluid Framework. The container contains all data associated with a Fluid session, including operations and snapshots. The Fluid runtime uses the container's data to recreate the state of a Fluid session.
 
-## Container vs Runtime
+Fluid containers are *not* standalone applications. A Fluid container is a *code-plus-data package*. Containers must be loaded by a Fluid loader and connected to a Fluid service before the Fluid session is ready to be used.
 
-A Fluid container is the instantiated container JavaScript object, but it's also the definition of the container. We
-interchangeably use "container" to refer to the class, which can create new objects, and the instantiated object itself.
+## What does the Fluid container contain?
 
-The `ContainerRuntime` refers to the inner mechanics of the Fluid container. As a developer you will interact with the
-runtime through the runtime methods that expose useful properties of the instantiated container object.
+Fluid containers contain the app logic and state of a Fluid session, including the logic to merge remote state change operations into the local state stored in the container.
 
-## What is a Fluid container?
+**Fluid Objects** contain the application logic for a Fluid session. Within a container, app logic is encapsulated in Fluid objects. Every container must include at least one Fluid object, and will frequently contain multiple objects composed together to create the overall experience.
 
-A Fluid container is a code-plus-data package. A container includes at least one Fluid object for app logic, but
-often multiple Fluid objects are composed together to create the overall experience.
-
-From the Fluid service perspective, the container is the atomic unit of Fluid. The service does not know about anything
-inside of a Fluid container.
-
-That being said, app logic is handled by Fluid objects and state is handled by the distributed data structures within
-the Fluid objects.
+**Distributed data structures** (DDSes) contain app state data and merge logic.
 
 ## What does the Fluid container do?
 
@@ -37,12 +27,11 @@ objects](./dataobject-aqueduct), and provides a request API for accessing Fluid 
 
 ### Process and distribute operations
 
-When the Fluid loader resolves the Fluid container, it passes the container a group of service drivers. These drivers
-are the **DeltaConnection**, **DeltaStorageService**, and **DocumentStorageService**.
+When a Fluid loader loads a Fluid container, it provides the container with several services and connections used for synchronization:
 
-The Fluid container includes code to process the operations from the DeltaConnection, catch up on missed operations
-using the DeltaStorageService, and create or fetch summaries from the DocumentStorageService. Each of these are
-important, but the most critical is the op processing.
+- **Delta Connection**: The Fluid container uses this connection to receive real-time change operations from the Fluid service, which it merges into its state data using logic stores in a DDS.
+- **DeltaStorageService**: The Fluid container uses this service to retrieve historical change operations. This is useful to catch up on operations that occurred while the Fluid session was offline, or to ensure that the Fluid container has the complete set of change operations.
+- **DocumentStorageService**: This service provides a current summary of the Fluid session state. When a Fluid session has a local state that is stale, for example when the session has been offline for some time, there may be many change operations that must be applied sequentially. In this case, it may be easier to download a summary of the app state instead of re-creating it by replaying change operations.
 
 The Fluid container is responsible for passing operations to the relevant distributed data structures and Fluid objects.
 
@@ -64,3 +53,13 @@ this will return a status code and the default data store.
 ```ts
 container.request({url: "/"})
 ```
+
+
+
+## Container vs Runtime
+
+A Fluid container is the instantiated container JavaScript object, but it's also the definition of the container. We
+interchangeably use "container" to refer to the class, which can create new objects, and the instantiated object itself.
+
+The `ContainerRuntime` refers to the inner mechanics of the Fluid container. As a developer you will interact with the
+runtime through the runtime methods that expose useful properties of the instantiated container object.
