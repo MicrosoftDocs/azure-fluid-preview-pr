@@ -32,6 +32,8 @@
     href: concepts/service.md
   - name: Authorization in Azure Fluid Relay
     href: concepts/fluid-authorization.md
+  - name: Data encryption in Microsoft Azure Fluid Relay Server
+    href: concepts/data-encryption.md
   - name: Debugging Guide
     href: concepts/debugging.md
   - name: Compatibility
