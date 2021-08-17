@@ -6,6 +6,7 @@ menuPosition: 5
 # Azure Fluid Relay containers and the container runtime
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 **Fluid containers** are the atomic unit of storage in the Azure Fluid Relay service, and are foundational concept for creating anything with the Fluid Framework. The container contains all data associated with a Fluid session, including operations and snapshots. The Fluid runtime uses the container's data to recreate the state of a Fluid session.
 
 Fluid containers are *not* standalone applications. A Fluid container is a *code-plus-data package*. Containers must be loaded by a Fluid loader and connected to a Fluid service before the Fluid session is ready to be used.
@@ -31,6 +32,21 @@ Fluid containers contain the app logic and state of a Fluid session, including t
 **Fluid Objects** contain the application logic for a Fluid session. Within a container, app logic is encapsulated in Fluid objects. Every container must include at least one Fluid object, and will frequently contain multiple objects composed together to create the overall experience.
 
 >>>>>>> c1d46b7 (Good chunk of revisions to the containers articles)
+=======
+> [!NOTE]
+> Find a place for "A Fluid container is the instantiated container JavaScript object, but it's also the definition of the container. We interchangeably use "container" to refer to the class, which can create new objects, and the instantiated object itself.
+
+**Fluid containers** are the atomic unit of storage in the Azure Fluid Relay service, and are foundational concept for creating anything with the Fluid Framework. The container contains all data associated with a Fluid session, including operations and snapshots. The Fluid runtime uses the container's data to recreate the state of a Fluid session.
+
+Fluid containers are *not* standalone applications. A Fluid container is a *code-plus-data package*. Containers must be loaded by a Fluid loader and connected to a Fluid service before the Fluid session is ready to be used.
+
+## What does the Fluid container contain?
+
+Fluid containers contain the app logic and state of a Fluid session, including the logic to merge remote state change operations into the local state stored in the container.
+
+**Fluid Objects** contain the application logic for a Fluid session. Within a container, app logic is encapsulated in Fluid objects. Every container must include at least one Fluid object, and will frequently contain multiple objects composed together to create the overall experience.
+
+>>>>>>> c1d46b72442671755593838cdc98a09702d255ea
 **Distributed data structures** (DDSes) contain app state data and merge logic.
 
 ## What does the Fluid container do?
