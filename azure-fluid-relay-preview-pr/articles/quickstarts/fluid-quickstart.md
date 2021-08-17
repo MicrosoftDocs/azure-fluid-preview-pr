@@ -92,17 +92,18 @@ const connectionConfig: FrsConnectionConfig = {
   key: "",
   orderer: "",
   storage: "",
+  tokenProvider: new InsecureTokenProvider("tenantKey", { id: "userId" }),
 };
 
-FrsClient.init(connectionConfig);
+const client = new FrsClient(connectionConfig);
 ```
 
 Finally, fetch the container from FRS instead of tinylicious using your newly initialized client.
 
 ```typescript
 const [fluidContainer] = isNew
-    ? (await FrsClient.createContainer({ id }, containerSchema))
-    : (await FrsClient.getContainer({ id }, containerSchema));
+    ? (await client.createContainer({ id }, containerSchema))
+    : (await client.getContainer({ id }, containerSchema));
 ```
 
 🥳**Congratulations**🎉 You have successfully taken the first step towards unlocking the world of Fluid collaboration.
