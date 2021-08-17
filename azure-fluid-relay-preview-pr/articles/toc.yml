@@ -3,55 +3,47 @@
 - name: Overview
   items:
   - name: What is Azure Fluid Relay?
-    href: overview/overview.md
+    href: overview/index.md
 - name: Quickstarts
   items:
   - name: Azure Fluid Relay quickstart
     href: quickstarts/fluid-quickstart.md
-- name: Tutorials
-  items:
-  - name: Placeholder
-    href: overview/overview.md
-- name: Samples
-  items:
-  - name: Placeholder
-    href: overview/overview.md
 - name: Concepts
   items:
-  - name: Architecture
+  - name: 1 Architecture
     href: concepts/architecture.md
-  - name: Introducing distributed data structures
-    href: concepts/dds.md
-  - name: Encapsulating data with DataObject
+  - name: 3 Encapsulating data with DataObject
     href: concepts/dataobject-aqueduct.md
-  - name: Containers and the container runtime
-    href: concepts/dds.md
-  - name: Container Management
+  - name: 5 Container Runtime
+    href: concepts/container-runtime.md
+  - name: 8 Container Management
     href: concepts/container-management.md
-  - name: The Fluid Service
-    href: concepts/service.md
-  - name: Authorization in Azure Fluid Relay
-    href: concepts/fluid-authorization.md
-  - name: Data encryption in Microsoft Azure Fluid Relay Server
-    href: concepts/data-encryption.md
-  - name: Debugging Guide
-    href: concepts/debugging.md
-  - name: Compatibility
+  - name: 20 Compatibility
     href: concepts/compatibility.md
 
+  - name: 00 Data encryption in Microsoft Azure Fluid Relay Server
+    href: concepts/data-encryption.md
+  - name: 00 Introducing distributed data structures
+    href: concepts/dds.md
+  - name: 00 (EMPTY) Debugging Guide
+    href: concepts/debugging.md
+  - name: 00 Authorization in Azure Fluid Relay
+    href: concepts/fluid-authorization.md
+  - name: 00 Service
+    href: concepts/service.md
 - name: How-to guides
   items:
-  - name: How to secure your Fluid service
+  - name: (EMPTY) How to secure your Fluid service
     href: howtos/auth.md
   - name: How to use JWT tokens
     href: howtos/fluid-jwtoken.md
-  - name: Using service clients to connect to Fluid services
+  - name: (EMPTY) Using service clients to connect to Fluid services
     href: howtos/service-clients.md
-  - name: Connect to a Fluid Service in Azure with FrsClient
+  - name: (EMPTY) Connect to a Fluid Service in Azure with FrsClient
     href: howtos/azure-frs.md
-  - name: Collect Fluid Framework logs with a custom ITelemetryBaseLogger
+  - name: (EMPTY) Collect Fluid Framework logs with a custom ITelemetryBaseLogger
     href: howtos/custom-logging.md
-  - name: Enable Fluid logs in the browser
+  - name: (EMPTY) Enable Fluid logs in the browser
     href: howtos/enable-logs.md
 - name: Reference
   items:
