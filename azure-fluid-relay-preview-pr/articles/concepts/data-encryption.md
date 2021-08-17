@@ -15,7 +15,7 @@ Encryption at rest is a phrase that commonly refers to the encryption of data on
 <br/>
 The diagram below shows at a high level how Azure Fluid Relay Server is implemented and how it handles data storage.
 
-![plot](./data-encryption.png)
+![plot](../../images/data-encryption.png)
 
 Microsoft Azure Fluid Relay Server leverages the encryption-at-rest capability of [Azure Kubernetes](https://docs.microsoft.com/en-us/azure/aks/enable-host-encryption), [Microsoft Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/database-encryption-at-rest) and [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/common/storage-service-encryption). The service-to-service communication between AFRS and these resources is TLS encrypted and is enclosed in with the Azure Virtual Network Boundary, protected from external interference by Network Security Rules.
 

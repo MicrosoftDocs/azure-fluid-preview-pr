@@ -5,9 +5,6 @@ menuPosition: 5
 
 # Azure Fluid Relay containers and the container runtime
 
-> [!NOTE]
-> Find a place for "A Fluid container is the instantiated container JavaScript object, but it's also the definition of the container. We interchangeably use "container" to refer to the class, which can create new objects, and the instantiated object itself.
-
 **Fluid containers** are the atomic unit of storage in the Azure Fluid Relay service, and are foundational concept for creating anything with the Fluid Framework. The container contains all data associated with a Fluid session, including operations and snapshots. The Fluid runtime uses the container's data to recreate the state of a Fluid session.
 
 Fluid containers are *not* standalone applications. A Fluid container is a *code-plus-data package*. Containers must be loaded by a Fluid loader and connected to a Fluid service before the Fluid session is ready to be used.
@@ -22,8 +19,7 @@ Fluid containers contain the app logic and state of a Fluid session, including t
 
 ## What does the Fluid container do?
 
-The Fluid container interacts with the [processes and distributes operations](./hosts), manages the [lifecycle of Fluid
-objects](./dataobject-aqueduct), and provides a request API for accessing Fluid objects.
+The Fluid container interacts with the [processes and distributes operations](./hosts), manages the [lifecycle of Fluid objects](dataobject-aqueduct.md), and provides a request API for accessing Fluid objects.
 
 ### Process and distribute operations
 
@@ -37,29 +33,27 @@ The Fluid container is responsible for passing operations to the relevant distri
 
 ### Manage Fluid object lifecycle
 
-The container provides a `createDataStore` method to create new data stores. The container is responsible for
-instantiating the Fluid objects and creating the operations that let other connected clients know about the new Fluid
-object.
+The container provides a `createDataStore` method to create new data stores. The container is responsible for instantiating the Fluid objects and creating the operations that let other connected clients know about the new Fluid object.
+
+> ![NOTE]
+> This section should have information about closing/destroying/releasing/deleting the store too. Object lifestyle includes all CRUD operations. Alternately, we can rename this section to something like 'instantiate new Fluid data stores'
 
 ### Using a Fluid container: the Request API
 
-The Fluid container is interacted with through the request paradigm. While aqueduct creates a default request handler
-that returns the default Fluid objects, the request paradigm is a powerful pattern that lets developers create custom
-logic.
-
-To retrieve the default data store, you can perform a request on the container. Similar to the [loaders API](./hosts.md)
-this will return a status code and the default data store.
+Interactions with Fluid containers are accomplished through requests. Developers can create powerful request handlers with custom logic, but [Aqueduct](dataobject-aqueduct.md) creates a standard set of request handlers for each Fluid object by default. For example, the following request uses one of Aqueduct's default handlers to retrieve a container's default data store.
 
 ```ts
 container.request({url: "/"})
 ```
 
-
+> ![NOTE]
+> We should add an example response here
 
 ## Container vs Runtime
 
-A Fluid container is the instantiated container JavaScript object, but it's also the definition of the container. We
-interchangeably use "container" to refer to the class, which can create new objects, and the instantiated object itself.
+> ![NOTE]
+> This is an important distinction, but I'm having trouble finding a good place to put it. Leaving it here for now.
 
-The `ContainerRuntime` refers to the inner mechanics of the Fluid container. As a developer you will interact with the
-runtime through the runtime methods that expose useful properties of the instantiated container object.
+A Fluid container is the instantiated container JavaScript object, but it's also the definition of the container. We interchangeably use "container" to refer to the class, which can create new objects, and the instantiated object itself.
+
+The `ContainerRuntime` refers to the inner mechanics of the Fluid container. As a developer you will interact with the runtime through the runtime methods that expose useful properties of the instantiated container object.
