@@ -12,8 +12,6 @@
   items:
   - name: 1 Architecture
     href: concepts/architecture.md
-  - name: 3 Encapsulating data with DataObject
-    href: concepts/dataobject-aqueduct.md
   - name: 5 Container Runtime
     href: concepts/container-runtime.md
   - name: 8 Container Management
@@ -23,14 +21,10 @@
 
   - name: 00 Data encryption in Microsoft Azure Fluid Relay Server
     href: concepts/data-encryption.md
-  - name: 00 Introducing distributed data structures
-    href: concepts/dds.md
   - name: 00 (EMPTY) Debugging Guide
     href: concepts/debugging.md
   - name: 00 Authorization in Azure Fluid Relay
     href: concepts/fluid-authorization.md
-  - name: 00 Service
-    href: concepts/service.md
 - name: How-to guides
   items:
   - name: (EMPTY) How to secure your Fluid service
