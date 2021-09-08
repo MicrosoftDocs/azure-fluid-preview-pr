@@ -31,8 +31,6 @@
     href: howtos/auth.md
   - name: How to use JWT tokens
     href: howtos/fluid-jwtoken.md
-  - name: (EMPTY) Using service clients to connect to Fluid services
-    href: howtos/service-clients.md
   - name: (EMPTY) Connect to a Fluid Service in Azure with FrsClient
     href: howtos/azure-frs.md
   - name: (EMPTY) Collect Fluid Framework logs with a custom ITelemetryBaseLogger
