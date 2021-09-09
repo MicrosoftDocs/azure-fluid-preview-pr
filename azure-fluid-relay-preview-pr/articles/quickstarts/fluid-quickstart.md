@@ -58,7 +58,7 @@ that the state of the dice changes in both clients.
 To run against the Azure Fluid Relay service, you'll make a code change to `app.ts`. The app is currently configured to
 use a local in-memory service called Tinylicious, which runs on port 7070 by default.
 
-### Add the FRS-Client package
+### Add the Azure client package
 
 Install `@fluidframework/azure-client` and import the client in `app.ts`.
 
