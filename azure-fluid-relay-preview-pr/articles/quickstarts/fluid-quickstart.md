@@ -58,6 +58,20 @@ that the state of the dice changes in both clients.
 To run against the Azure Fluid Relay service, you'll make a code change to `app.ts`. The app is currently configured to
 use a local in-memory service called Tinylicious, which runs on port 7070 by default.
 
+### Add the FRS-Client package
+
+Install `@fluidframework/azure-client` and import the client in `app.ts`.
+
+```sh
+npm i @fluidframework/azure-client
+```
+
+```typescript
+import { AzureClient, InsecureTokenProvider } from "@fluidframework/azure-client";
+```
+
+### Replace the Tinylicious client with the Azure client
+
 To use an Azure Fluid Relay instance instead, replace the configuration values with your Azure Fluid Relay tenant ID,
 orderer, and storage URLs that were provided as part of the onboarding process. Then pass that configuration object into
 the `AzureClient` constructor.
@@ -71,12 +85,12 @@ const client = new TinyliciousClient();
 Replace the removed code with the AzureClient constructor and your Azure Fluid Relay service configuration.
 
 ```typescript
-// This configures the AzureClient to use a remote Azure Fluid Service instance.
 const azureUser = {
-    userId: "Test User",
+  userId: "Test User",
     userName: "test-user"
 }
 
+// This configures the AzureClient to use a remote Azure Fluid Service instance.
 const prodConfig = {
     tenantId: "[REPLACE WITH YOUR TENANT GUID]",
     tokenProvider: new InsecureTokenProvider("", azureUser),
@@ -89,9 +103,9 @@ const client = new AzureClient(prodConfig);
 
 ### TokenProvider
 
-The Azure Fluid Relay onboarding process provides you with a secret key for your tenant. You can use
-`InsecureTokenProvider` to generate and sign authentication tokens such that the Azure Fluid Relay service service will
-accept it. **To ensure that the secret doesn't get exposed, this should be replaced with another implementation of
+The Azure Fluid Relay resource creation process provides you with a secret key for your tenant. You can use
+`InsecureTokenProvider` to generate and sign authentication tokens such that the Azure Fluid Relay service will accept
+it. **To ensure that the secret doesn't get exposed, this should be replaced with another implementation of
 ITokenProvider that fetches the token from a secure, developer-provided backend service prior to releasing to
 production.**
 
