@@ -12,41 +12,37 @@ ms.author: sabroner
 
 # Quick Start
 
-In this Quick Start, we will be getting a 'dice roller' Fluid application up and running against the Azure Fluid Relay service. The code for this sample is currently living in a special branch of our Hello World repository. You can find it at [github.com/microsoft/FluidHelloWorld/tree/new-hello-world.](https://github.com/microsoft/FluidHelloWorld/tree/new-hello-world)
+In this Quick Start, we will be getting a 'dice roller' Fluid application up and running against the Azure Fluid Relay
+service.
 
-> This demo is current as of version ```^0.41.0```
+The starting code for this sample is at <https://github.com/microsoft/FluidHelloWorld>.
 
 ## Set up your development environment
 
 To get started, you need the following installed.
 
-- [Node.js](https://nodejs.org/en/download) -  V12.17+
-- Code Editor - We recommend [Visual Studio Code](https://code.visualstudio.com/).
+- [Node.js](https://nodejs.org/en/download) -- version 12.17 or higher
+- Code Editor -- We recommend [Visual Studio Code](https://code.visualstudio.com/).
 - [Git](https://git-scm.com/downloads)
 
 ## Getting Started Locally
 
-Open a new command window and navigate to the folder you where you want to install the project, and then clone the "new-hello-world"
-branch of the [FluidHelloWorld repo](https://github.com/microsoft/FluidHelloWorld/tree/new-hello-world) with the following commands. 
-The cloning process will create a subfolder named FluidHelloWorld with the project files in it.
+Open a new command window and navigate to the folder you where you want to install the project, and then clone the
+[FluidHelloWorld repo](https://github.com/microsoft/FluidHelloWorld) with the following commands. The cloning process
+will create a subfolder named FluidHelloWorld with the project files in it.
 
-```bash 
+```bash
 git clone https://github.com/microsoft/FluidHelloWorld.git
-cd FluidHelloWorld
-git checkout --track origin/new-hello-world
 ```
-
-<blockquote>
-The `new-hello-world` branch has our latest & greatest thinking about how the Fluid Framework API surface should look. These instructions applicable to all samples that use our API changes. Check out <a href="https://github.com/microsoft/FluidExamples">Github.com/Microsoft/FluidExamples</a>
-</blockquote>
 
 Navigate to the newly created folder and install required dependencies.
 
 ```bash
+cd FluidHelloWorld
 npm install
 ```
 
-Start both the client and server.
+Start both the client and a local server.
 
 ```bash
 npm start
@@ -57,55 +53,55 @@ action copy the full URL in the browser, including the ID, into a new window or 
 second client for your dice roller application. With both windows open, click the **Roll** button in either and note
 that the state of the dice changes in both clients.
 
-Now, let's run the same sample against the Azure Fluid Relay service.
-
 ## Running against the Azure Fluid Relay service
 
-To run against the Azure Fluid Relay service, we'll have to make a simple code change to ```app.ts```.
+To run against the Azure Fluid Relay service, you'll make a code change to `app.ts`. The app is currently configured to
+use a local in-memory service called Tinylicious, which runs on port 7070 by default.
 
-We're going to replace Tinylicious, our local test service, with Routerlicious, our internal name for the Azure Fluid Relay Service.
+To use an Azure Fluid Relay instance instead, replace the configuration values with your Azure Fluid Relay tenant ID,
+orderer, and storage URLs that were provided as part of the onboarding process. Then pass that configuration object into
+the `AzureClient` constructor.
 
-### Add the FRS-Client package
-Install ```@fluid-experimental/frs-client``` and import the client and config in ```app.ts```
-
-```sh
-npm i @fluid-experimental/frs-client
-```
+Remove the following line:
 
 ```typescript
-import { FrsConnectionConfig, FrsClient } from '@fluid-experimental/frs-client';
+const client = new TinyliciousClient();
 ```
 
-### Replace the Tinylicious client with the FRS client
-
-Remove the following line
-```typescript
-TinyliciousClient.init();
-```
-
-and replace it with the RouterliciousService constructor and your Azure Fluid Relay Service configuration.
+Replace the removed code with the AzureClient constructor and your Azure Fluid Relay service configuration.
 
 ```typescript
-const connectionConfig: FrsConnectionConfig = {
-  type: "key",
-  tenantId: "",
-  key: "",
-  orderer: "",
-  storage: "",
-  tokenProvider: new InsecureTokenProvider("tenantKey", { id: "userId" }),
+// This configures the AzureClient to use a remote Azure Fluid Service instance.
+const azureUser = {
+    userId: "Test User",
+    userName: "test-user"
+}
+
+const prodConfig = {
+    tenantId: "[REPLACE WITH YOUR TENANT GUID]",
+    tokenProvider: new InsecureTokenProvider("", azureUser),
+    orderer: "[REPLACE WITH YOUR ORDERER URL]",
+    storage: "[REPLACE WITH YOUR STORAGE URL]",
 };
 
-const client = new FrsClient(connectionConfig);
+const client = new AzureClient(prodConfig);
 ```
 
-Finally, fetch the container from FRS instead of tinylicious using your newly initialized client.
+### TokenProvider
 
-```typescript
-const [fluidContainer] = isNew
-    ? (await client.createContainer({ id }, containerSchema))
-    : (await client.getContainer({ id }, containerSchema));
+The Azure Fluid Relay onboarding process provides you with a secret key for your tenant. You can use
+`InsecureTokenProvider` to generate and sign authentication tokens such that the Azure Fluid Relay service service will
+accept it. **To ensure that the secret doesn't get exposed, this should be replaced with another implementation of
+ITokenProvider that fetches the token from a secure, developer-provided backend service prior to releasing to
+production.**
+
+### Build and run the client only
+
+Now that you've updated the `AzureClient` configuration, you can run just the client to test it. You no longer need to
+run a local Fluid service, because you're using the remote Azure Fluid Relay service instance!
+
+```bash
+npm run start:client
 ```
 
 🥳**Congratulations**🎉 You have successfully taken the first step towards unlocking the world of Fluid collaboration.
-
-----
