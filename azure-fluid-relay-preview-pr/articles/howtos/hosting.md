@@ -166,7 +166,7 @@ Run the `npm run build` command from the root directory to generate a `dist` fol
 
 3. This will bring a prompt `Select the folder to deploy`. 
 
-<img src='https://user-images.githubusercontent.com/46719950/133347129-75c84893-e2ab-448c-8b8d-22b5fedb2632.png' style="height: 200px,">
+<img src='https://user-images.githubusercontent.com/46719950/133347129-75c84893-e2ab-448c-8b8d-22b5fedb2632.png' style="height: 200px">
 
 <br />
 
