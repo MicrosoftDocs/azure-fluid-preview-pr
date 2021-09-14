@@ -61,7 +61,7 @@ const client = new AzureClient(config);
 
 3. `Static Web Apps` allow you to develop a full-stack web site without needing to deal with the server-side configuration of an entire web hosting environment and not exposing the token on the client-side bundle code. You can fetch the token by setting up your own backend `api`. Developers can create their own `HTTPTrigger Azure Function` under an `api` folder in the `FluidHelloWorld` repository itself. The `GetAzureToken` shown below is an `HTTPTrigger Azure Function` which is responsible for generating tokens on your very own backend. 
 
-<img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/apiFileExplorer.PNG?raw=true' style="height: 300px"> 
+<img src='https://user-images.githubusercontent.com/46719950/133346937-ca85c926-7282-44aa-a644-fd039a065050.PNG' style="height: 300px"> 
 
 <br />
 <br />
@@ -162,17 +162,17 @@ Run the `npm run build` command from the root directory to generate a `dist` fol
 1. Click on the Azure Extension (Ctrl + Shift + A) in Visual Studio Code. In `App Service` section, under your `Subscription`, you can see the App Service you have created through the Azure Portal previously. 
 2. Right click on your `App Service` and select `Deploy to Web App`. You would get an option to browse the file explorer. Select the `dist` folder and later select `Deploy`. 
 
-    <img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/deployToAppService.png?raw=true' style="height: 300px">
+    <img src='https://user-images.githubusercontent.com/46719950/133347127-8d4f1c64-a391-4e52-bead-e21f5a014b8c.png' style="height: 300px">
 
 3. This will bring a prompt `Select the folder to deploy`. 
 
-<img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/fileExplorerDist.png?raw=true' style="height: 200px,">
+<img src='https://user-images.githubusercontent.com/46719950/133347129-75c84893-e2ab-448c-8b8d-22b5fedb2632.png' style="height: 200px,">
 
 <br />
 
 Browse to the `dist` folder and select it to deploy to the App Service.
 
-<img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/browseDist.png?raw=true' style="height: 100px">
+<img src='https://user-images.githubusercontent.com/46719950/133347117-94c514a1-03d3-42e5-9295-2d891ca66f1c.png' style="height: 100px">
 
 You should now see a notification indicating that deployment is commencing and you can view the output in a terminal window.
 
@@ -191,42 +191,42 @@ Once you have updated the url, commit these changes to GitHub.
 3. The command palette opens up on the very top. There are, in total, eight configurations that need to be set: 
     - Enter the name of the Static Web App
 
-        <img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/nameStaticWebApp.png?raw=true' style="height: 100px">
+        <img src='https://user-images.githubusercontent.com/46719950/133347130-3d9d3782-ccee-4b69-871c-c5c125e8235b.png' style="height: 100px">
 
     - Select a resource group/Create a new resource group
     - Select a sku: Free/Standard
     - Choose build preset to configure default project structure as `Custom`
 
-        <img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/staticLanguage.png?raw=true' style="height: 200px">
+        <img src='https://user-images.githubusercontent.com/46719950/133347131-89224941-adc5-4c4b-91a1-ae838176366b.png' style="height: 200px">
 
     - Enter the location of your Application Code
         
-        <img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/applicationCodeLoc.png?raw=true' style="height: 100px">
+        <img src='https://user-images.githubusercontent.com/46719950/133347115-99611f21-eed1-4090-b4eb-369d379ee182.png' style="height: 100px">
 
     - Enter the location of your Azure Function Code
         
-        <img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/apiLocation.png?raw=true' style="height: 100px">
+        <img src='https://user-images.githubusercontent.com/46719950/133347059-ac595a86-3a9b-44e4-9395-2b7c7f3b0185.png' style="height: 100px">
 
     - Enter the location of your build output
         
-        <img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/buildLoc.png?raw=true' style="height: 100px">
+        <img src='https://user-images.githubusercontent.com/46719950/133347119-34c473c6-6a4b-4d50-8650-4b52bb17bd1e.png' style="height: 100px">
 
     - Select a location for the new resource
 
 Once the app is created, a confirmation notification will be shown in Visual Studio Code. The location of your `Application Code`, `Azure Function` and `build output` is part of your `azure-static-web-apps-xxx-xxx-xxx.yml` deployment file located in the `/.github/workflows` directory. When you finish the creation steps, your repository will have a GitHub Action to build and deploy to your Static Web App.
 
-<img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/confirmationMsg.png?raw=true' style="height: 150px">
+<img src='https://user-images.githubusercontent.com/46719950/133347124-ea092816-e898-4bb7-8842-df888a69435a.png' style="height: 150px">
 
 Once your build is completed, you can right-click on your `Static Web App` and select `Open in Portal`.
 
-<img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/staticPortal.png?raw=true' style="height: 200px">
+<img src='https://user-images.githubusercontent.com/46719950/133347133-e49cf32f-7f19-4238-86a3-70d1306b9290.png' style="height: 200px">
 
 <br />
 <br />
 
 On your Portal, in `Settings` navigate to `Environments`. Here you can see the status of your build and browse the website.
 
-<img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/buildStatus.png?raw=true' style="height: 150px">
+<img src='https://user-images.githubusercontent.com/46719950/133347120-d942e2bb-31dc-4356-b829-911848d2745e.png' style="height: 150px">
 
 <br />
 <br />
@@ -236,4 +236,4 @@ If you're not going to continue to use this application, you can delete the Azur
 
 In the Visual Studio Code Explorer window, return to the Static Web Apps section and right-click on your Static Web App and select `Delete`.
 
-<img src='https://github.com/sdeshpande3/azure-fluid-preview-pr/blob/docs/azure-fluid-relay-preview-pr/articles/howtos/resources/images/deleteResource.PNG?raw=true' style="height: 200px">
+<img src='https://user-images.githubusercontent.com/46719950/133347125-a5a0b60c-94d9-45f8-8aaa-6a8dd3d09cb1.PNG' style="height: 200px">
