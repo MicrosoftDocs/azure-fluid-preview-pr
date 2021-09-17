@@ -71,7 +71,8 @@ The below code snippet can help you with creating an `HTTPTrigger` function for 
 ```typescript
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { ScopeType } from "@fluidframework/azure-client";
-import { generateToken, generateUser } from "@fluidframework/azure-service-utils";
+import { generateToken } from "@fluidframework/azure-service-utils";
+import { generateUser } from "@fluidframework/server-service-utils";
 
 //Replace "myTenantKey" with your key here.
 const key = "myTenantKey";
