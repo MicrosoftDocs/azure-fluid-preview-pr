@@ -27,31 +27,41 @@ You can connect to `Azure Fluid Relay service` by providing the tenant ID and ke
 
 1. `InsecureTokenProvider`: This type of implementation is only recommended for development purposes as it exposes the tenant key secret in your client-side code bundle. You can add the below `config` in [app.ts](https://github.com/microsoft/FluidHelloWorld/blob/main/src/app.ts), replacing the strings with the values appropriate for your assigned instance.
 
-```typescript
-import { AzureClient, AzureConnectionConfig } from "@fluidframework/azure-client";
+```javascript
+import { AzureClient } from "@fluidframework/azure-client";
 import { InsecureTokenProvider } from `@fluidframework/test-client-utils`;
 
-const config: AzureConnectionConfig = {
+const config = {
     tenantId: "myTenantId",
     tokenProvider: new InsecureTokenProvider("myTenantKey", { id: "123", name: "Test User" }),
     orderer: "https://myOrdererUrl",
     storage: "https://myStorageUrl",
 };
-const client = new AzureClient(config);
+
+const clientProp = {
+    connection: config
+}
+
+const client = new AzureClient(clientProp);
 ```
 
 2. `AzureFunctionTokenProvider`: This implementation can be used for fetching the token from your own backend service that is responsible for signing it with the tenant key. It provides you with a secured way to generate the token and pass it back to the client app. `AzureFunctionTokenProvider` is an implementation that fulfills the `ITokenProvider` interface without exposing the tenant key secret in client-side code. Developers would require their own backend `HTTPTrigger Azure Function` for fetching the token, thereby passing the url to `AzureFunctionTokenProvider` in [app.ts](https://github.com/microsoft/FluidHelloWorld/blob/main/src/app.ts). We will discuss setting up this backend endpoint in the next step.
 
-```typescript
-import { AzureClient, AzureConnectionConfig, AzureFunctionTokenProvider } from "@fluidframework/azure-client";
+```javascript
+import { AzureClient, AzureFunctionTokenProvider } from "@fluidframework/azure-client";
 
-const config: AzureConnectionConfig = {
+const config = {
     tenantId: "myTenantId",
     tokenProvider: new AzureFunctionTokenProvider("myAzureFunctionUrl"+"/api/GetAzureToken", { userId: "test-user",userName: "Test User" }),
     orderer: "https://myOrdererUrl",
     storage: "https://myStorageUrl",
 };
-const client = new AzureClient(config);
+
+const clientProp = {
+    connection: config
+}
+
+const client = new AzureClient(clientProp);
 ```
 
 <br />
@@ -68,21 +78,20 @@ const client = new AzureClient(config);
 
 The below code snippet can help you with creating an `HTTPTrigger` function for fetching the token by passing in your tenant key.
 
-```typescript
-import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { ScopeType } from "@fluidframework/azure-client";
-import { generateToken } from "@fluidframework/azure-service-utils";
-import { generateUser } from "@fluidframework/server-service-utils";
+```javascript
+const ScopeType =  require('@fluidframework/protocol-definitions');
+const generateToken =  require('@fluidframework/server-services-utils').generateToken;
+
 
 //Replace "myTenantKey" with your key here.
 const key = "myTenantKey";
 
-const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    const tenantId = (req.query.tenantId || (req.body && req.body.tenantId)) as string;
-    const documentId = (req.query.documentId || (req.body && req.body.documentId)) as string;
-    const userId = (req.query.userId || (req.body && req.body.userId)) as string;
-    const userName = (req.query.userName || (req.body && req.body.userName)) as string;
-    const scopes = (req.query.scopes || (req.body && req.body.scopes)) as ScopeType[];
+module.exports = async function (context, req) {
+    const tenantId = (req.query.tenantId) || (req.body && req.body.tenantId);
+    const documentId = (req.query.documentId) || (req.body && req.body.documentId);
+    const userId = (req.query.userId) || (req.body && req.body.userId);
+    const userName = (req.query.userName) || (req.body && req.body.userName);
+    const scopes = (req.query.scopes) || (req.body && req.body.scopes);
 
     if (!tenantId) {
         context.res = {
@@ -106,10 +115,6 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     }
 
     let user = { name: userName, id: userId };
-    if (!userId || !userName) {
-        const generatedUser = generateUser() as any;
-        user = { name: userName ?? generatedUser.name, id: userId ?? generatedUser.id };
-    }
 
     const token = generateToken(
         tenantId,
@@ -123,25 +128,28 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
         status: 200,
         body: token
     };
-};
-
-export default httpTrigger; 
+}
 ```
 
 <br />
 
 Once the app is deployed, you will have to update the `AzureFunctionTokenProvider` URL to point to your `HTTPTrigger Azure Function` as shown below:
 
-```typescript
-import { AzureClient, AzureConnectionConfig } from "@fluidframework/azure-client";
+```javascript
+import { AzureClient, AzureFunctionTokenProvider } from "@fluidframework/azure-client";
 
-const config: AzureConnectionConfig = {
+const config = {
     tenantId: "myTenantId",
     tokenProvider: new AzureFunctionTokenProvider("myStaticWebAppUrl"+"/api/GetAzureToken", { userId: "test-user",userName: "Test User" }),
     orderer: "https://myOrdererUrl",
     storage: "https://myStorageUrl",
 };
-const client = new AzureClient(config);
+
+const clientProp = {
+    connection: config;
+}
+
+const client = new AzureClient(clientProp);
 ```
 
 The above `api` would be accesible through the `api_location` field in `azure-static-web-apps-xxx-xxx-xxx.yml` deployment file located in the `/.github/workflows` directory once you have configured the `Static Web App` deployment.
